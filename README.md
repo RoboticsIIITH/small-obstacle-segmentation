@@ -4,7 +4,7 @@
 - [x] Modify for 4 channel input 
 
 ### Training
-Fellow steps below to train your model:
+Follow below steps below to train your model:
 
 1. Input arguments: (see full input arguments via python train.py --help):
     ```Shell
@@ -19,6 +19,6 @@ Fellow steps below to train your model:
                 [--weight-decay M] [--nesterov] [--no-cuda]
                 [--gpu-ids GPU_IDS] [--seed S] [--resume RESUME]
                 [--checkname CHECKNAME] [--ft] [--eval-interval EVAL_INTERVAL]
-                [--no-val]
+                [--no-val][--mode]
 
     ```
