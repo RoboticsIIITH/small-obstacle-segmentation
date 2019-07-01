@@ -2,7 +2,7 @@ import os
 import cv2
 from tqdm import tqdm
 import  numpy as np
-root_path=os.getcwd()+'/downtown_data_run/'
+root_path='/scratch/ash/canyon_data_run/'
 folders=os.listdir(root_path)
 tqdm_iter=tqdm(folders)
 for f in tqdm_iter:

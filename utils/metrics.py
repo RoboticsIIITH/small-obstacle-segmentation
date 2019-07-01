@@ -49,9 +49,14 @@ class Evaluator(object):
         true_positive=(truth_mask & pred_mask)
         true_positive=np.count_nonzero(true_positive==True)
         total=np.count_nonzero(truth_mask==True)
-        recall=float(true_positive/total)
-        precision=float(true_positive/np.count_nonzero(pred_mask==True))
-        return recall,precision
+        pred=np.count_nonzero(pred_mask==True)
+        if total==0 or pred==0:
+            return 0,0                                  #Discuss @Aditya 
+        else:
+            recall=float(true_positive/total)
+            precision=float(true_positive/pred)
+            return recall,precision
+
 
 
     def add_batch(self, gt_image, pre_image):

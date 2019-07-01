@@ -97,6 +97,10 @@ class Trainer(object):
 		self.model.train()
 		tbar = tqdm(self.train_loader)
 		num_img_tr = len(self.train_loader)
+
+		recall=0.0			# Just for small obstacle
+		precision=0.0
+			
 		for i, sample in enumerate(tbar):
 			image, target = sample['image'], sample['label']
 			if self.args.cuda:
@@ -112,16 +116,28 @@ class Trainer(object):
 			tbar.set_description('Train loss: %.3f' % (train_loss / (i + 1)))
 			self.writer.add_scalar('train/total_loss_iter', loss.item(), i + num_img_tr * epoch)
 
+
 			# Show 10 * 3 inference results each epoch
 			if i % (num_img_tr // 10) == 0:
 				global_step = i + num_img_tr * epoch
 				self.summary.visualize_image(self.writer, self.args.dataset, image, target, output, global_step)
 
+
+			pred = output.data.cpu().numpy()
+			target = target.cpu().numpy()
+			pred = np.argmax(pred, axis=1)
+			r,p=self.evaluator.pdr_metric(target,pred,2)	# Class id for small obs=2
+			recall+=r
+			precision+=p
+
+
 		self.writer.add_scalar('train/total_loss_epoch', train_loss, epoch)
+		self.writer.add_scalar('Recall/per_epoch',recall/(i+1),epoch)
+		self.writer.add_scalar('Precision/per_epoch',precision/(i+1),epoch)
 		print('[Epoch: %d, numImages: %5d]' % (epoch, i * self.args.batch_size + image.data.shape[0]))
 		print('Loss: %.3f' % train_loss)
 
-		if self.args.no_val:
+		if self.args.no_val and (epoch+1 % 3 == 0):
 			# save checkpoint every epoch
 			is_best = False
 			self.saver.save_checkpoint({
@@ -129,7 +145,7 @@ class Trainer(object):
 				'state_dict': self.model.module.state_dict(),
 				'optimizer': self.optimizer.state_dict(),
 				'best_pred': self.best_pred,
-			}, is_best)
+			}, is_best,filename='checkpoint_'+str(epoch+1)+'_.pth.tar')
 
 
 	def validation(self, epoch):
@@ -157,7 +173,7 @@ class Trainer(object):
 			loss = self.criterion.CrossEntropyLoss(output,target,weight=torch.from_numpy(calculate_weights_batch(sample,self.nclass).astype(np.float32)))
 			test_loss += loss.item()
 			tbar.set_description('Test loss: %.3f' % (test_loss / (i + 1)))
-			if i % (num_itr // 5) == 0:
+			if i % (num_itr // 10) == 0:
 				global_step = i + num_itr * epoch
 				self.summary.visualize_image(self.writer, self.args.dataset, image, target, output, global_step)
 			pred = output.data.cpu().numpy()
@@ -168,15 +184,15 @@ class Trainer(object):
 			r,p=self.evaluator.pdr_metric(target,pred,2)	# Class id for small obs=2
 			recall+=r
 			precision+=p
-			print("Recall,precision:{},{}".format(r,p))
+			print("Recall,Precision:{},{}".format(r,p))
 
 		# Fast test during the training
 		Acc = self.evaluator.Pixel_Accuracy()
 		Acc_class = self.evaluator.Pixel_Accuracy_Class()
 		mIoU = self.evaluator.Mean_Intersection_over_Union()
 		FWIoU = self.evaluator.Frequency_Weighted_Intersection_over_Union()
-		recall=recall/num_itr
-		precision=precision/num_itr
+		recall=recall/(i+1)
+		precision=precision/(i+1)
 		self.writer.add_scalar('val/total_loss_epoch', test_loss, epoch)
 		self.writer.add_scalar('val/mIoU', mIoU, epoch)
 		self.writer.add_scalar('val/Acc', Acc, epoch)
@@ -256,7 +272,7 @@ def main():
 	# cuda, seed and logging
 	parser.add_argument('--no-cuda', action='store_true', default=
 						False, help='disables CUDA training')
-	parser.add_argument('--gpu-ids', type=str, default='0',
+	parser.add_argument('--gpu-ids', type=str, default='0,1',
 						help='use which gpu to train, must be a \
 						comma-separated list of integers only (default=0,1)')
 	parser.add_argument('--seed', type=int, default=1, metavar='S',
@@ -272,7 +288,7 @@ def main():
 	# evaluation option
 	parser.add_argument('--eval-interval', type=int, default=5,
 						help='evaluuation interval (default: 1)')
-	parser.add_argument('--no-val', action='store_true', default=False,
+	parser.add_argument('--no-val', action='store_true', default=True,
 						help='skip validation during training')
 
 	parser.add_argument('--mode',type=str,help='options=train/val/test')

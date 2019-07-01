@@ -55,10 +55,12 @@ def make_data_loader(args, **kwargs):
 		len_dataset = len(images)
 
 		dataset_path = {}
-		dataset_path['train'] = images[:int(0.7 * len_dataset)]
-		dataset_path['val'] = images[int(0.7 * len_dataset):int(0.9 * len_dataset)]
-		dataset_path['test'] = images[int(0.9 * len_dataset):]
-
+		#dataset_path['train'] = images[:int(0.7 * len_dataset)]
+		dataset_path['train'] = images
+		#dataset_path['val'] = images[int(0.7 * len_dataset):int(0.9 * len_dataset)]
+		dataset_path['val'] = images
+		#dataset_path['test'] = images[int(0.9 * len_dataset):]
+		dataset_path['test'] = images
 		print("Dataset found ... Train Size: {}, Val Size: {}, Test Size: {}".format(len(dataset_path['train']),
 																					 len(dataset_path['val']),
 																					 len(dataset_path['test'])))
@@ -67,9 +69,9 @@ def make_data_loader(args, **kwargs):
 		val_set = small_obstacle.SmallObs(args,image_paths=dataset_path['val'],split='val')
 		test_set = small_obstacle.SmallObs(args,image_paths=dataset_path['test'],split='test')
 		num_class = train_set.NUM_CLASSES
-		train_loader = DataLoader(train_set, batch_size=args.batch_size, shuffle=True, **kwargs)
-		val_loader = DataLoader(val_set, batch_size=args.batch_size, shuffle=False, **kwargs)
-		test_loader = DataLoader(test_set, batch_size=args.batch_size, shuffle=False, **kwargs)
+		train_loader = DataLoader(train_set, batch_size=args.batch_size, shuffle=True,drop_last=True, **kwargs)
+		val_loader = DataLoader(val_set, batch_size=args.batch_size, shuffle=False,drop_last=True, **kwargs)
+		test_loader = DataLoader(test_set, batch_size=args.batch_size, shuffle=False,drop_last=True, **kwargs)
 		return train_loader, val_loader, test_loader, num_class
 
 	else:
