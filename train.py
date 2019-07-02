@@ -97,9 +97,6 @@ class Trainer(object):
 		self.model.train()
 		tbar = tqdm(self.train_loader)
 		num_img_tr = len(self.train_loader)
-
-		recall=0.0			# Just for small obstacle
-		precision=0.0
 			
 		for i, sample in enumerate(tbar):
 			image, target = sample['image'], sample['label']
@@ -116,28 +113,16 @@ class Trainer(object):
 			tbar.set_description('Train loss: %.3f' % (train_loss / (i + 1)))
 			self.writer.add_scalar('train/total_loss_iter', loss.item(), i + num_img_tr * epoch)
 
-
 			# Show 10 * 3 inference results each epoch
 			if i % (num_img_tr // 10) == 0:
 				global_step = i + num_img_tr * epoch
 				self.summary.visualize_image(self.writer, self.args.dataset, image, target, output, global_step)
 
-
-			pred = output.data.cpu().numpy()
-			target = target.cpu().numpy()
-			pred = np.argmax(pred, axis=1)
-			r,p=self.evaluator.pdr_metric(target,pred,2)	# Class id for small obs=2
-			recall+=r
-			precision+=p
-
-
 		self.writer.add_scalar('train/total_loss_epoch', train_loss, epoch)
-		self.writer.add_scalar('Recall/per_epoch',recall/(i+1),epoch)
-		self.writer.add_scalar('Precision/per_epoch',precision/(i+1),epoch)
 		print('[Epoch: %d, numImages: %5d]' % (epoch, i * self.args.batch_size + image.data.shape[0]))
 		print('Loss: %.3f' % train_loss)
 
-		if self.args.no_val and (epoch+1 % 3 == 0):
+		if self.args.no_val:
 			# save checkpoint every epoch
 			is_best = False
 			self.saver.save_checkpoint({
@@ -160,8 +145,7 @@ class Trainer(object):
 		tbar = tqdm(loader, desc='\r')
 
 		test_loss = 0.0
-		recall=0.0			# Just for small obstacle
-		precision=0.0
+
 		num_itr=len(loader)
 
 		for i, sample in enumerate(tbar):
@@ -173,7 +157,7 @@ class Trainer(object):
 			loss = self.criterion.CrossEntropyLoss(output,target,weight=torch.from_numpy(calculate_weights_batch(sample,self.nclass).astype(np.float32)))
 			test_loss += loss.item()
 			tbar.set_description('Test loss: %.3f' % (test_loss / (i + 1)))
-			if i % (num_itr // 10) == 0:
+			if i % (num_itr // 20) == 0:
 				global_step = i + num_itr * epoch
 				self.summary.visualize_image(self.writer, self.args.dataset, image, target, output, global_step)
 			pred = output.data.cpu().numpy()
@@ -181,25 +165,21 @@ class Trainer(object):
 			pred = np.argmax(pred, axis=1)
 			# Add batch sample into evaluator
 			self.evaluator.add_batch(target, pred)
-			r,p=self.evaluator.pdr_metric(target,pred,2)	# Class id for small obs=2
-			recall+=r
-			precision+=p
-			print("Recall,Precision:{},{}".format(r,p))
 
 		# Fast test during the training
 		Acc = self.evaluator.Pixel_Accuracy()
 		Acc_class = self.evaluator.Pixel_Accuracy_Class()
 		mIoU = self.evaluator.Mean_Intersection_over_Union()
 		FWIoU = self.evaluator.Frequency_Weighted_Intersection_over_Union()
-		recall=recall/(i+1)
-		precision=precision/(i+1)
+		recall,precision=self.evaluator.pdr_metric(class_id=2)
+
 		self.writer.add_scalar('val/total_loss_epoch', test_loss, epoch)
 		self.writer.add_scalar('val/mIoU', mIoU, epoch)
 		self.writer.add_scalar('val/Acc', Acc, epoch)
 		self.writer.add_scalar('val/Acc_class', Acc_class, epoch)
 		self.writer.add_scalar('val/fwIoU', FWIoU, epoch)
-		self.writer.add_scalar('Recall/PDR_epoch',recall,epoch)
-		self.writer.add_scalar('Precision_epoch',precision,epoch)
+		self.writer.add_scalar('Recall/per_epoch',recall,epoch)
+		self.writer.add_scalar('Precision/per_epoch',precision,epoch)
 
 		print('Validation:')
 		print('[Epoch: %d, numImages: %5d]' % (epoch, i * self.args.batch_size + image.data.shape[0]))
@@ -208,16 +188,22 @@ class Trainer(object):
 		print('Recall/PDR:{}'.format(recall))
 		print('Precision:{}'.format(precision))
 
-		new_pred = mIoU
-		if new_pred > self.best_pred:
-			is_best = True
-			self.best_pred = new_pred
-			self.saver.save_checkpoint({
+		if self.args.mode=="train":
+			new_pred = mIoU
+			if new_pred > self.best_pred:
+				is_best = True
+				self.best_pred = new_pred
+				self.saver.save_checkpoint({
 				'epoch': epoch + 1,
 				'state_dict': self.model.module.state_dict(),
 				'optimizer': self.optimizer.state_dict(),
 				'best_pred': self.best_pred,
-			}, is_best)
+				}, is_best)
+
+		else:			
+			pass
+		
+		
 
 def main():
 	parser = argparse.ArgumentParser(description="PyTorch DeeplabV3Plus Training")
@@ -283,12 +269,12 @@ def main():
 	parser.add_argument('--checkname', type=str, default=None,
 						help='set the checkpoint name')
 	# finetuning pre-trained models
-	parser.add_argument('--ft', action='store_true', default=True,
+	parser.add_argument('--ft', type=bool, default=True,
 						help='finetuning on a different dataset')
 	# evaluation option
 	parser.add_argument('--eval-interval', type=int, default=5,
 						help='evaluuation interval (default: 1)')
-	parser.add_argument('--no-val', action='store_true', default=True,
+	parser.add_argument('--no-val', type=bool, default=False,
 						help='skip validation during training')
 
 	parser.add_argument('--mode',type=str,help='options=train/val/test')

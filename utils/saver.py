@@ -3,6 +3,7 @@ import shutil
 import torch
 from collections import OrderedDict
 import glob
+from mypath import Path
 
 class Saver(object):
 
@@ -20,6 +21,7 @@ class Saver(object):
         """Saves checkpoint to disk"""
         filename = os.path.join(self.experiment_dir, filename)
         torch.save(state, filename)
+        print("Saving checkpoint")
         if is_best:
             best_pred = state['best_pred']
             with open(os.path.join(self.experiment_dir, 'best_pred.txt'), 'w') as f:
@@ -45,16 +47,15 @@ class Saver(object):
         logfile = os.path.join(self.experiment_dir, 'parameters.txt')
         log_file = open(logfile, 'w')
         p = OrderedDict()
-        p['datset'] = self.args.dataset
+        p['mode']= self.args.mode
         p['backbone'] = self.args.backbone
         p['out_stride'] = self.args.out_stride
         p['lr'] = self.args.lr
         p['lr_scheduler'] = self.args.lr_scheduler
         p['loss_type'] = self.args.loss_type
         p['epoch'] = self.args.epochs
-        p['base_size'] = self.args.base_size
-        p['crop_size'] = self.args.crop_size
-
+        p['batch_size'] = self.args.batch_size
+        p['data_sequence']=Path.db_root_dir(self.args.dataset)
         for key, val in p.items():
             log_file.write(key + ':' + str(val) + '\n')
         log_file.close()
