@@ -157,9 +157,12 @@ class Trainer(object):
 			loss = self.criterion.CrossEntropyLoss(output,target,weight=torch.from_numpy(calculate_weights_batch(sample,self.nclass).astype(np.float32)))
 			test_loss += loss.item()
 			tbar.set_description('Test loss: %.3f' % (test_loss / (i + 1)))
-			if i % (num_itr // 20) == 0:
-				global_step = i + num_itr * epoch
-				self.summary.visualize_image(self.writer, self.args.dataset, image, target, output, global_step)
+
+			if self.args.mode=="test":
+				if i % (num_itr // 25) == 0:
+					global_step = i + num_itr * epoch
+					self.summary.visualize_image(self.writer, self.args.dataset, image, target, output, global_step,num_image=1)
+
 			pred = output.data.cpu().numpy()
 			target = target.cpu().numpy()
 			pred = np.argmax(pred, axis=1)

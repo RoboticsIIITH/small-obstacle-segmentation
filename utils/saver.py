@@ -56,6 +56,7 @@ class Saver(object):
         p['epoch'] = self.args.epochs
         p['batch_size'] = self.args.batch_size
         p['data_sequence']=Path.db_root_dir(self.args.dataset)
+        p['checkpoint_trained_on']=self.args.resume
         for key, val in p.items():
             log_file.write(key + ':' + str(val) + '\n')
         log_file.close()
