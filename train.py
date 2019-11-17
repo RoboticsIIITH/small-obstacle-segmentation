@@ -43,18 +43,7 @@ class Trainer(object):
 									weight_decay=args.weight_decay, nesterov=args.nesterov)
 
 		# Define Criterion
-		# whether to use class balanced weights
-		"""
-		if args.use_balanced_weights:
-			classes_weights_path = os.path.join(Path.db_root_dir(args.dataset), args.dataset+'_classes_weights.npy')
-			if os.path.isfile(classes_weights_path):
-				weight = np.load(classes_weights_path)
-			else:
-				weight = calculate_weigths_labels(args.dataset, self.train_loader, self.nclass)
-			weight = torch.from_numpy(weight.astype(np.float32))
-		else:
-			weight = None
-		"""
+
 		self.criterion = SegmentationLosses(cuda=args.cuda)
 		self.model, self.optimizer = model, optimizer
 
@@ -74,7 +63,7 @@ class Trainer(object):
 		self.best_pred = 0.0
 		if args.resume is not None:
 			if not os.path.isfile(args.resume):
-				raise RuntimeError("=> no checkpoint found at '{}'" .format(args.resume))
+				raise RuntimeError("=> no checkpoint found at '{}'".format(args.resume))
 
 			checkpoint = torch.load(args.resume)
 			args.start_epoch = checkpoint['epoch']
@@ -85,19 +74,20 @@ class Trainer(object):
 			if not args.ft:
 				self.optimizer.load_state_dict(checkpoint['optimizer'])
 			self.best_pred = checkpoint['best_pred']
-			print("=> loaded checkpoint '{}' (epoch {})"
-				  .format(args.resume, checkpoint['epoch']))
+			print("=> loaded checkpoint '{}' (epoch {})".format(args.resume, checkpoint['epoch']))
 
-		# Clear start epoch if fine-tuning
-		if args.ft:
+		# Clear start epoch if fine-tuning or in validation/test mode
+		if args.ft or args.mode == "val" or args.mode == "test":
 			args.start_epoch = 0
+			self.best_pred = 0.0
+
 
 	def training(self, epoch):
 		train_loss = 0.0
 		self.model.train()
 		tbar = tqdm(self.train_loader)
 		num_img_tr = len(self.train_loader)
-			
+
 		for i, sample in enumerate(tbar):
 			image, target = sample['image'], sample['label']
 			if self.args.cuda:
@@ -113,16 +103,21 @@ class Trainer(object):
 			tbar.set_description('Train loss: %.3f' % (train_loss / (i + 1)))
 			self.writer.add_scalar('train/total_loss_iter', loss.item(), i + num_img_tr * epoch)
 
-			# Show 10 * 3 inference results each epoch
-			if i % (num_img_tr // 10) == 0:
+			pred = output.clone().data.cpu()
+			pred_softmax = F.softmax(pred, dim=1).numpy()
+			pred = np.argmax(pred.numpy(), axis=1)
+
+			# Plot prediction every 20th iter
+			if i % (num_img_tr // 20) == 0:
 				global_step = i + num_img_tr * epoch
-				self.summary.visualize_image(self.writer, self.args.dataset, image, target, output, global_step)
+				self.summary.vis_grid(self.writer, self.args.dataset, image.clone().data.cpu().numpy()[0],
+									target.clone().data.cpu().numpy()[0],pred[0],
+									pred_softmax[0], global_step, split="Train")
 
-		self.writer.add_scalar('train/total_loss_epoch', train_loss, epoch)
-		print('[Epoch: %d, numImages: %5d]' % (epoch, i * self.args.batch_size + image.data.shape[0]))
-		print('Loss: %.3f' % train_loss)
+		self.writer.add_scalar('train/total_loss_epoch', train_loss/num_img_tr, epoch)
+		print('Loss: {}'.format(train_loss / num_img_tr))
 
-		if self.args.no_val:
+		if self.args.no_val or self.args.save_all:
 			# save checkpoint every epoch
 			is_best = False
 			self.saver.save_checkpoint({
@@ -130,7 +125,7 @@ class Trainer(object):
 				'state_dict': self.model.module.state_dict(),
 				'optimizer': self.optimizer.state_dict(),
 				'best_pred': self.best_pred,
-			}, is_best,filename='checkpoint_'+str(epoch+1)+'_.pth.tar')
+			}, is_best, filename='checkpoint_' + str(epoch + 1) + '_.pth.tar')
 
 
 	def validation(self, epoch):
@@ -145,6 +140,7 @@ class Trainer(object):
 		tbar = tqdm(loader, desc='\r')
 
 		test_loss = 0.0
+		idr_thresholds = [0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55]
 
 		num_itr=len(loader)
 
@@ -154,20 +150,21 @@ class Trainer(object):
 				image, target = image.cuda(), target.cuda()
 			with torch.no_grad():
 				output = self.model(image)
-			loss = self.criterion.CrossEntropyLoss(output,target,weight=torch.from_numpy(calculate_weights_batch(sample,self.nclass).astype(np.float32)))
-			test_loss += loss.item()
+			# loss = self.criterion.CrossEntropyLoss(output,target,weight=torch.from_numpy(calculate_weights_batch(sample,self.nclass).astype(np.float32)))
+			# test_loss += loss.item()
 			tbar.set_description('Test loss: %.3f' % (test_loss / (i + 1)))
 
-			if self.args.mode=="test":
-				if i % (num_itr // 25) == 0:
-					global_step = i + num_itr * epoch
-					self.summary.visualize_image(self.writer, self.args.dataset, image, target, output, global_step,num_image=1)
 
-			pred = output.data.cpu().numpy()
-			target = target.cpu().numpy()
-			pred = np.argmax(pred, axis=1)
+			pred = output.clone().data.cpu()
+			pred_softmax = F.softmax(pred, dim=1).numpy()
+			pred = np.argmax(pred.numpy(), axis=1)
+			target = target.clone().data.cpu().numpy()
+			image = image.clone().data.cpu().numpy()
+
 			# Add batch sample into evaluator
 			self.evaluator.add_batch(target, pred)
+			global_step = i + num_itr * epoch
+			self.summary.vis_grid(self.writer, self.args.dataset, image[0], target[0], pred[0],pred_softmax[0], global_step, split="Validation")
 
 		# Fast test during the training
 		Acc = self.evaluator.Pixel_Accuracy()
@@ -175,6 +172,7 @@ class Trainer(object):
 		mIoU = self.evaluator.Mean_Intersection_over_Union()
 		FWIoU = self.evaluator.Frequency_Weighted_Intersection_over_Union()
 		recall,precision=self.evaluator.pdr_metric(class_id=2)
+		idr_avg = np.array([self.evaluator.get_idr(class_value=2, threshold=value) for value in idr_thresholds])
 
 		self.writer.add_scalar('val/total_loss_epoch', test_loss, epoch)
 		self.writer.add_scalar('val/mIoU', mIoU, epoch)
@@ -183,30 +181,34 @@ class Trainer(object):
 		self.writer.add_scalar('val/fwIoU', FWIoU, epoch)
 		self.writer.add_scalar('Recall/per_epoch',recall,epoch)
 		self.writer.add_scalar('Precision/per_epoch',precision,epoch)
+		self.writer.add_scalar('IDR/per_epoch(0.20)', idr_avg[0], epoch)
+		self.writer.add_scalar('IDR/avg_epoch', np.mean(idr_avg), epoch)
+		self.writer.add_histogram('Prediction_hist', self.evaluator.pred_labels[self.evaluator.gt_labels == 2], epoch)
+
 
 		print('Validation:')
-		print('[Epoch: %d, numImages: %5d]' % (epoch, i * self.args.batch_size + image.data.shape[0]))
 		print("Acc:{}, Acc_class:{}, mIoU:{}, fwIoU: {}".format(Acc, Acc_class, mIoU, FWIoU))
 		print('Loss: %.3f' % test_loss)
 		print('Recall/PDR:{}'.format(recall))
 		print('Precision:{}'.format(precision))
+		print('IDR:{}'.format(np.mean(idr_avg)))
 
-		if self.args.mode=="train":
+		if self.args.mode == "train":
 			new_pred = mIoU
 			if new_pred > self.best_pred:
 				is_best = True
 				self.best_pred = new_pred
 				self.saver.save_checkpoint({
-				'epoch': epoch + 1,
-				'state_dict': self.model.module.state_dict(),
-				'optimizer': self.optimizer.state_dict(),
-				'best_pred': self.best_pred,
+					'epoch': epoch + 1,
+					'state_dict': self.model.module.state_dict(),
+					'optimizer': self.optimizer.state_dict(),
+					'best_pred': self.best_pred,
 				}, is_best)
 
-		else:			
+		else:
 			pass
-		
-		
+
+
 
 def main():
 	parser = argparse.ArgumentParser(description="PyTorch DeeplabV3Plus Training")
@@ -275,10 +277,11 @@ def main():
 	parser.add_argument('--ft', type=bool, default=True,
 						help='finetuning on a different dataset')
 	# evaluation option
-	parser.add_argument('--eval-interval', type=int, default=5,
+	parser.add_argument('--eval-interval', type=int, default=2,
 						help='evaluuation interval (default: 1)')
 	parser.add_argument('--no-val', type=bool, default=False,
 						help='skip validation during training')
+	parser.add_argument('--save-all', type=bool, default=True)
 
 	parser.add_argument('--mode',type=str,help='options=train/val/test')
 
@@ -319,8 +322,8 @@ def main():
 			'pascal': 0.007,
 			'small_obstacle': 0.01
 		}
-		args.lr = lrs[args.dataset.lower()] / (4 * len(args.gpu_ids)) * args.batch_size
-
+		# args.lr = lrs[args.dataset.lower()] / (4 * len(args.gpu_ids)) * args.batch_size
+		args.lr = 0.01
 
 	if args.checkname is None:
 		args.checkname = 'deeplab-'+str(args.backbone)
@@ -339,7 +342,7 @@ def main():
 
 		for epoch in range(trainer.args.start_epoch, trainer.args.epochs):
 
-			trainer.validation(epoch)	
+			trainer.validation(epoch)
 
 	trainer.writer.close()
 

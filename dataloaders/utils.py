@@ -105,4 +105,4 @@ def get_pascal_labels():
 
 def get_small_obs_labels():
 
-    return np.array([[128, 64, 128],[244, 35, 232],[70, 70, 70]])
+    return np.array([[0, 0, 0],[204, 102, 0],[0,204,0]])

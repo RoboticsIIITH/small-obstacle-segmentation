@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$USER_HOME$/LSTM/.idea/LSTM.iml" filepath="$USER_HOME$/LSTM/.idea/LSTM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Image_lidar_fusion/.idea/Image_lidar_fusion.iml" filepath="$PROJECT_DIR$/../Image_lidar_fusion/.idea/Image_lidar_fusion.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/deeplab.iml" filepath="$PROJECT_DIR$/.idea/deeplab.iml" />
     </modules>
   </component>

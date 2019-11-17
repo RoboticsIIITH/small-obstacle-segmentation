@@ -1,0 +1,1 @@
+CUDA_VISIBLE_DEVICES=2,3 python train.py --resume '/home/ash/Small-Obs-Project/deeplab_checkpoints/deeplab-small_obs.pth' --mode val

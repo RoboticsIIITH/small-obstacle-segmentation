@@ -1,6 +1,7 @@
 import torch
 import random
 import numpy as np
+from torchvision import transforms
 
 from PIL import Image, ImageOps, ImageFilter
 
@@ -121,6 +122,38 @@ class RandomScaleCrop(object):
         return {'image': img,
                 'label': mask}
 
+class FixedCrop(object):
+
+    # Crop according to given dimensions where,
+    # x1,x2 width crop
+    # y1,y2 height crop
+
+    def __init__(self,x1,x2,y1,y2):
+        self.x1,self.x2,self.y1,self.y2 = x1,x2,y1,y2
+
+    def __call__(self, sample):
+        img = sample['image']
+        img = img[self.y1:self.y2,self.x1:self.x2,:3]
+        label = sample['label']
+        label = label[self.y1:self.y2, self.x1:self.x2]
+
+        return {'image': Image.fromarray(img),
+                'label': Image.fromarray(label)}
+
+class ColorJitter(object):
+
+    """Add color jitter to input image"""
+
+    def __init__(self,jitter=0.1):
+        self.jitter = jitter
+
+    def __call__(self,sample):
+        img = sample['image']
+        label = sample['label']
+        transform_rgb = transforms.ColorJitter(self.jitter,self.jitter,self.jitter, 0)
+
+        return {'image': transform_rgb(img),
+                'label': label}
 
 class RandomCrop(object):
     ## Makes sliding windows style crops: Aasheesh
