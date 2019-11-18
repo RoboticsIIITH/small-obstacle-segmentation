@@ -179,8 +179,8 @@ class Trainer(object):
 		self.writer.add_scalar('val/Acc', Acc, epoch)
 		self.writer.add_scalar('val/Acc_class', Acc_class, epoch)
 		self.writer.add_scalar('val/fwIoU', FWIoU, epoch)
-		self.writer.add_scalar('Recall/per_epoch',recall,epoch)
-		self.writer.add_scalar('Precision/per_epoch',precision,epoch)
+		self.writer.add_scalar('val/Recall/per_epoch',recall,epoch)
+		self.writer.add_scalar('val/Precision/per_epoch',precision,epoch)
 		self.writer.add_scalar('IDR/per_epoch(0.20)', idr_avg[0], epoch)
 		self.writer.add_scalar('IDR/avg_epoch', np.mean(idr_avg), epoch)
 		self.writer.add_histogram('Prediction_hist', self.evaluator.pred_labels[self.evaluator.gt_labels == 2], epoch)
@@ -263,7 +263,7 @@ def main():
 	# cuda, seed and logging
 	parser.add_argument('--no-cuda', action='store_true', default=
 						False, help='disables CUDA training')
-	parser.add_argument('--gpu-ids', type=str, default='0,1',
+	parser.add_argument('--gpu-ids', type=str, default='0',
 						help='use which gpu to train, must be a \
 						comma-separated list of integers only (default=0,1)')
 	parser.add_argument('--seed', type=int, default=1, metavar='S',

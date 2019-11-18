@@ -7,7 +7,7 @@
     <orderEntry type="module" module-name="Image_lidar_fusion" />
   </component>
   <component name="TestRunnerService">
-    <option name="projectConfiguration" value="pytest" />
-    <option name="PROJECT_TEST_RUNNER" value="py.test" />
+    <option name="projectConfiguration" value="Nosetests" />
+    <option name="PROJECT_TEST_RUNNER" value="Nosetests" />
   </component>
 </module>
