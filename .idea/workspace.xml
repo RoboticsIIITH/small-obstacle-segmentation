@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bc97785b-ca48-49fb-90a2-25c97318838f" name="Default" comment="">
       <change afterPath="$PROJECT_DIR$/../Image_lidar_fusion/superpixel_demo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/Small_Obstacle_Segmentation.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Image_lidar_fusion/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Image_lidar_fusion/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Image_lidar_fusion/dataloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Image_lidar_fusion/dataloader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Image_lidar_fusion/moloy_trans_mat.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Image_lidar_fusion/moloy_trans_mat.txt" afterDir="false" />
@@ -12,12 +10,10 @@
       <change beforePath="$PROJECT_DIR$/../Image_lidar_fusion/road_transf_mat.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Image_lidar_fusion/road_transf_mat_2.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Image_lidar_fusion/visualise_calibration.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Image_lidar_fusion/visualise_calibration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deeplab.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dataloaders/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataloaders/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/saver.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/saver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/val_script.sh" beforeDir="false" afterPath="$PROJECT_DIR$/val_script.sh" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,38 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/train.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3132">
-              <caret line="187" selection-start-line="187" selection-end-line="187" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/dataloaders/__init__.py">
+        <entry file="file://$PROJECT_DIR$/train_script.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#47#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/utils/metrics.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1242">
-              <caret line="70" column="60" selection-start-line="70" selection-start-column="60" selection-end-line="70" selection-end-column="60" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
+            <state>
+              <caret column="55" selection-start-column="55" selection-end-column="55" />
             </state>
           </provider>
         </entry>
@@ -108,23 +77,23 @@
         <option value="$PROJECT_DIR$/utils/summaries.py" />
         <option value="$PROJECT_DIR$/utils/metrics.py" />
         <option value="$PROJECT_DIR$/dataloaders/custom_transforms.py" />
-        <option value="$PROJECT_DIR$/utils/saver.py" />
         <option value="$PROJECT_DIR$/dataloaders/datasets/small_obstacle.py" />
         <option value="$PROJECT_DIR$/train_script.sh" />
         <option value="$PROJECT_DIR$/../Image_lidar_fusion/visualise_calibration.py" />
         <option value="$PROJECT_DIR$/../Image_lidar_fusion/optimizer.py" />
         <option value="$PROJECT_DIR$/../Image_lidar_fusion/dataloader.py" />
+        <option value="$PROJECT_DIR$/train.py" />
         <option value="$PROJECT_DIR$/val_script.sh" />
         <option value="$PROJECT_DIR$/dataloaders/__init__.py" />
-        <option value="$PROJECT_DIR$/train.py" />
+        <option value="$PROJECT_DIR$/utils/saver.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="x" value="1920" />
-    <option name="y" value="-25" />
+    <option name="y" value="-28" />
     <option name="width" value="1920" />
-    <option name="height" value="1105" />
+    <option name="height" value="1108" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -136,15 +105,6 @@
       <pane id="ProjectPane">
         <subPane>
           <expand>
-            <path>
-              <item name="Small_Obstacle_Segmentation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Small_Obstacle_Segmentation" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Small_Obstacle_Segmentation" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Small_Obstacle_Segmentation" type="462c0819:PsiDirectoryNode" />
-              <item name="dataloaders" type="462c0819:PsiDirectoryNode" />
-            </path>
             <path>
               <item name="Small_Obstacle_Segmentation" type="b2602c69:ProjectViewProjectNode" />
               <item name="Image_lidar_fusion" type="462c0819:PsiDirectoryNode" />
@@ -328,19 +288,20 @@
       <workItem from="1574058368296" duration="98000" />
       <workItem from="1574058481017" duration="4915000" />
       <workItem from="1574071199644" duration="476000" />
+      <workItem from="1574164720207" duration="1288000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13082000" />
+    <option name="totallyTimeSpent" value="14370000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1919" y="-28" width="1922" height="1109" extended-state="6" />
+    <frame x="0" y="-28" width="1920" height="1108" extended-state="6" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info content_ui="combo" id="Project" order="1" weight="0.21695095" />
       <window_info id="Structure" order="2" weight="0.25" />
-      <window_info active="true" id="Terminal" order="3" visible="true" weight="0.70788914" />
+      <window_info active="true" id="Terminal" order="3" visible="true" weight="0.84754795" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
@@ -555,13 +516,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/saver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/dataloader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -572,47 +526,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train_script.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="119" selection-start-column="119" selection-end-column="119" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/val_script.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="155" selection-start-column="155" selection-end-column="155" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3132">
-          <caret line="187" selection-start-line="187" selection-end-line="187" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/metrics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1242">
-          <caret line="70" column="60" selection-start-line="70" selection-start-column="60" selection-end-line="70" selection-end-column="60" />
+        <state relative-caret-position="295">
+          <caret line="64" column="29" lean-forward="true" selection-start-line="64" selection-start-column="29" selection-end-line="64" selection-end-column="29" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="197">
+          <caret line="307" column="32" lean-forward="true" selection-start-line="307" selection-start-column="32" selection-end-line="307" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/saver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="24" lean-forward="true" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dataloaders/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+        <state relative-caret-position="105">
+          <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
           <folding>
             <element signature="e#0#47#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/val_script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="157" lean-forward="true" selection-start-column="157" selection-end-column="157" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train_script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="55" selection-start-column="55" selection-end-column="55" />
         </state>
       </provider>
     </entry>

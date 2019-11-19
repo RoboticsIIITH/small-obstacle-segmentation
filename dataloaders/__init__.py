@@ -22,8 +22,8 @@ def make_data_loader(args, **kwargs):
 			for file in sorted(os.listdir(path)):
 				files_train.append(path + '/' + file)
 
-		# for folder in os.listdir(val_path):
-		for folder in ["vindhya_1"]:
+		for folder in os.listdir(val_path):
+		# for folder in ["vindhya_1"]:
 			path = os.path.join(val_path, folder,"labels")
 			for file in sorted(os.listdir(path)):
 				files_val.append(path + '/' + file)
@@ -48,7 +48,7 @@ def make_data_loader(args, **kwargs):
 		test_set = small_obstacle.SmallObs(args,file_paths = dataset_path['test'],split='test')
 		num_class = train_set.NUM_CLASSES
 		train_loader = DataLoader(train_set, batch_size=args.batch_size, shuffle=True, drop_last=True, **kwargs)
-		val_loader = DataLoader(val_set, batch_size=2, shuffle=False, **kwargs)
+		val_loader = DataLoader(val_set, batch_size=64, shuffle=False, **kwargs)
 		test_loader = DataLoader(test_set, batch_size=args.batch_size, shuffle=False, **kwargs)
 		return train_loader, val_loader, test_loader, num_class
 

@@ -9,7 +9,7 @@ class Saver(object):
 
     def __init__(self, args):
         self.args = args
-        self.directory = os.path.join('/scratch/ash/iiit_logs/image', args.dataset, args.checkname)
+        self.directory = os.path.join('/scratch/ash/iiit_logs/image_2')
         self.runs = sorted(glob.glob(os.path.join(self.directory, 'exp_*')))
         run_id = int(self.runs[-1].split('_')[-1]) + 1 if self.runs else 0
 

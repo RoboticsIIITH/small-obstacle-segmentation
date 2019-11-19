@@ -1,1 +1,1 @@
-CUDA_VISIBLE_DEVICES=0 python train.py --resume '/scratch/ash/iiit_logs/image/small_obstacle/deeplab-drn/exp_0/checkpoint_12_.pth.tar --mode val --epochs 1
+CUDA_VISIBLE_DEVICES=0,1 python train.py --resume '/scratch/ash/iiit_logs/image/small_obstacle/deeplab-drn/exp_0/checkpoint_12_.pth.tar --mode val --epochs 1

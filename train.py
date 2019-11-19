@@ -140,7 +140,7 @@ class Trainer(object):
 		tbar = tqdm(loader, desc='\r')
 
 		test_loss = 0.0
-		idr_thresholds = [0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.55]
+		idr_thresholds = [0.20, 0.30, 0.40, 0.50, 0.60, 0.65]
 
 		num_itr=len(loader)
 
@@ -263,7 +263,7 @@ def main():
 	# cuda, seed and logging
 	parser.add_argument('--no-cuda', action='store_true', default=
 						False, help='disables CUDA training')
-	parser.add_argument('--gpu-ids', type=str, default='0',
+	parser.add_argument('--gpu-ids', type=str, default='0,1',
 						help='use which gpu to train, must be a \
 						comma-separated list of integers only (default=0,1)')
 	parser.add_argument('--seed', type=int, default=1, metavar='S',
@@ -305,7 +305,7 @@ def main():
 			'coco': 30,
 			'cityscapes': 200,
 			'pascal': 50,
-			'small_obstacle': 30
+			'small_obstacle': 16
 		}
 		args.epochs = epoches[args.dataset.lower()]
 
