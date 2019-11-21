@@ -26,10 +26,16 @@ class TensorboardSummary(object):
         writer.add_image('Groundtruth label', grid_image, global_step)
 
 
-    def vis_grid(self, writer, dataset, image, target, pred, pred_softmax, global_step, split):
+    def vis_grid(self, writer, dataset, image, target, pred, region_prop, pred_softmax, global_step, split):
         image = image.squeeze()
+        image = np.transpose(image, axes=[1, 2, 0])
+        image *= (0.229, 0.224, 0.225)
+        image += (0.485, 0.456, 0.406)
+        image *= 255.0
         image = image.astype(np.uint8)
-        image = np.moveaxis(image, 0, 2)
+
+        region_prop = region_prop.squeeze()
+
         target = target.squeeze()
         seg_mask = target == 2
         target = decode_segmap(target, dataset=dataset)
@@ -38,14 +44,16 @@ class TensorboardSummary(object):
         pred_softmax = seg_mask * pred_softmax
         pred = decode_segmap(pred, dataset=dataset).squeeze()
 
-        fig = plt.figure(figsize=(7, 20), dpi=150)
-        ax1 = fig.add_subplot(411)
+        fig = plt.figure(figsize=(7, 25), dpi=150)
+        ax1 = fig.add_subplot(511)
         ax1.imshow(image)
-        ax2 = fig.add_subplot(412)
+        ax2 = fig.add_subplot(512)
         ax2.imshow(pred)
-        ax3 = fig.add_subplot(413)
+        ax3 = fig.add_subplot(513)
         ax3.imshow(target)
-        ax4 = fig.add_subplot(414)
-        ax4.imshow(pred_softmax, cmap='plasma')
+        ax4 = fig.add_subplot(514)
+        ax4.imshow(region_prop, cmap='plasma')
+        ax5 = fig.add_subplot(515)
+        ax5.imshow(pred_softmax, cmap='plasma')
         writer.add_image(split, figure_to_image(fig), global_step)
         plt.clf()

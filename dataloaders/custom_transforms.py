@@ -18,6 +18,7 @@ class Normalize(object):
     def __call__(self, sample):
         img = sample['image']
         mask = sample['label']
+        region_prop = sample['rp']
         img = np.array(img).astype(np.float32)
         mask = np.array(mask).astype(np.float32)
         img /= 255.0
@@ -25,7 +26,8 @@ class Normalize(object):
         img /= self.std
 
         return {'image': img,
-                'label': mask}
+                'label': mask,
+                'rp': region_prop}
 
 
 class ToTensor(object):
@@ -37,26 +39,34 @@ class ToTensor(object):
         # torch image: C X H X W
         img = sample['image']
         mask = sample['label']
+        region_prop = sample['rp']
         img = np.array(img).astype(np.float32).transpose((2, 0, 1))
         mask = np.array(mask).astype(np.float32)
+        region_prop = np.array(region_prop).astype(np.float32)
+        region_prop = region_prop[np.newaxis,:,:]
 
         img = torch.from_numpy(img).float()
         mask = torch.from_numpy(mask).float()
+        region_prop = torch.from_numpy(region_prop).float()
 
         return {'image': img,
-                'label': mask}
+                'label': mask,
+                'rp': region_prop}
 
 
 class RandomHorizontalFlip(object):
     def __call__(self, sample):
         img = sample['image']
         mask = sample['label']
+        rp = sample['rp']
         if random.random() < 0.5:
             img = img.transpose(Image.FLIP_LEFT_RIGHT)
             mask = mask.transpose(Image.FLIP_LEFT_RIGHT)
+            rp = rp.transpose(Image.FLIP_LEFT_RIGHT)
 
         return {'image': img,
-                'label': mask}
+                'label': mask,
+                'rp': rp}
 
 
 class RandomRotate(object):
@@ -136,9 +146,12 @@ class FixedCrop(object):
         img = img[self.y1:self.y2,self.x1:self.x2,:3]
         label = sample['label']
         label = label[self.y1:self.y2, self.x1:self.x2]
+        region_prop = sample['rp']
+        region_prop = region_prop[self.y1:self.y2, self.x1:self.x2]
 
         return {'image': Image.fromarray(img),
-                'label': Image.fromarray(label)}
+                'label': Image.fromarray(label),
+                'rp': Image.fromarray(region_prop)}
 
 class ColorJitter(object):
 

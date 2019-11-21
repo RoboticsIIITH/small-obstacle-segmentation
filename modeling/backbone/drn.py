@@ -122,7 +122,7 @@ class DRN(nn.Module):
 
         elif arch == 'D':
             self.layer0 = nn.Sequential(
-                nn.Conv2d(3, channels[0], kernel_size=7, stride=1, padding=3,
+                nn.Conv2d(4, channels[0], kernel_size=7, stride=1, padding=3,
                           bias=False),
                 BatchNorm(channels[0]),
                 nn.ReLU(inplace=True)

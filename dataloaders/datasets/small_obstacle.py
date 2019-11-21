@@ -26,6 +26,7 @@ class SmallObs(data.Dataset):
 		input_path = self.file_paths[index]
 		temp=input_path.split('labels')
 		img_path = temp[0] + 'image' + temp[1]
+		rp_path = temp[0] + 'region_prop' + temp[1].split('.')[0] + '.npy'
 		# depth_path = temp[0] + 'depth' + temp[1]
 
 		_img = np.array(Image.open(img_path))
@@ -33,12 +34,14 @@ class SmallObs(data.Dataset):
 		# assert np.max(_depth) > 255. , "Found 8 bit depth, 16 bit depth is required"
 		# _depth = _depth/256.																# Converts 16 bit uint depth to 0-255 float
 		_target = np.asarray(Image.open(input_path))
+		_region_prop = np.load(rp_path)
+		assert np.max(_region_prop) <= 1.0, "Incorrect region proposal input"
 
 		"""Combine all small obstacle classes from 2 to 9"""
 		_target = _target.flatten()
 		_target = [x if x<2 else 2 for x in _target]
 		_target = np.array(_target,dtype=np.float).reshape(_img.shape[0],_img.shape[1])
-		sample={'image':_img,'label':_target}
+		sample={'image':_img,'rp':_region_prop,'label':_target}
 
 		if self.split == 'train':
 			return self.transform_tr(sample)
@@ -54,9 +57,8 @@ class SmallObs(data.Dataset):
 
 		composed_transforms = transforms.Compose([
 			tr.FixedCrop(x1=280,x2=1000,y1=50,y2=562),
-			# tr.RandomCrop(crop_size=(512, 512)),
 			tr.RandomHorizontalFlip(),
-			# tr.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
+			tr.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
 			tr.ToTensor()
 			])
 		return composed_transforms(sample)
@@ -64,6 +66,7 @@ class SmallObs(data.Dataset):
 	def transform_val(self,sample):
 		composed_transforms = transforms.Compose([
 			tr.FixedCrop(x1=280, x2=1000, y1=50, y2=562),
+			tr.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225)),
 			tr.ToTensor()])
 
 		return composed_transforms(sample)

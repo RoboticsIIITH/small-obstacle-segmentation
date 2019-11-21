@@ -1,6 +1,6 @@
 import torch
 import sys
-sys.path.append('/home/ash/Desktop/deeplab/')
+sys.path.append('/home/ash/Small-Obs-Project/Small_Obstacle_Segmentation')
 import torch.nn as nn
 import torch.nn.functional as F
 from modeling.sync_batchnorm.batchnorm import SynchronizedBatchNorm2d
@@ -27,7 +27,8 @@ class DeepLab(nn.Module):
 		if freeze_bn:
 			self.freeze_bn()
 
-	def forward(self, input):
+	def forward(self, input,reg_prop):
+		input = torch.cat((input,reg_prop),dim=1)
 		x, low_level_feat = self.backbone(input)
 		x = self.aspp(x)
 		x = self.decoder(x, low_level_feat)
@@ -64,17 +65,36 @@ class DeepLab(nn.Module):
 
 
 if __name__ == "__main__":
-	model = DeepLab(backbone='drn', output_stride=16,num_classes=3)
-	model.eval()
-	input = torch.rand(1, 3, 512, 512)
-	output = model(input)
-	checkpoint=torch.load('/home/ash/Desktop/deeplab/checkpoints/deeplab-drn.pth.tar',map_location='cpu')
-	weight_shape=[3,256,1,1]
-	checkpoint['state_dict']['decoder.last_conv.8.weight']=nn.init.kaiming_normal_(torch.empty(weight_shape))
-	checkpoint['state_dict']['decoder.last_conv.8.bias']=nn.init.constant_(torch.empty(weight_shape[0]),0)
-	f=open("/home/ash/Desktop/deeplab/checkpoints/deeplab-small_obs.pth","wb")
-	torch.save(checkpoint,f)
-	#for i,param in enumerate(checkpoint['state_dict']):
-	#	print(i," ",param.shape)
 
-
+	# model = DeepLab(backbone='drn', output_stride=16, num_classes=3)
+	# model.train()
+	# image = torch.rand(2, 3, 512, 512)
+	# depth = torch.rand(2, 1, 512, 512)
+	# depth_mask = depth != 0
+	# depth_mask = depth_mask.float()
+	checkpoint = torch.load('/home/ash/Small-Obs-Project/deeplab_checkpoints/checkpoints/deeplab_4_channel_inp.pth',map_location='cpu')
+	# checkpoint_2 = torch.load('/home/ash/Small-Obs-Project/nconv/workspace/exp_guided_enc_dec/unguided_network_pretrained/CNN_ep0005.pth.tar')
+	# depth_layers = checkpoint_2['net']
+	# new_depth_layers = depth_layers.copy()
+	# for key,value in iter(depth_layers.items()):
+	# 	new_key = 'depth_backbone.' + str(key)
+	# 	new_depth_layers[new_key] = value
+	# 	del new_depth_layers[key]
+	#
+	# print(new_depth_layers.keys())
+	# checkpoint['state_dict'].update(new_depth_layers)
+	# torch.save(checkpoint,'/home/ash/Small-Obs-Project/deeplab_checkpoints/deeplab_5_channel.pth')
+	# print(summary(model,[(3,512,512),(1,512,512),(1,512,512)],batch_size=2))
+	# model.load_state_dict(checkpoint['state_dict'])
+	# output = model(image, depth, depth_mask)
+	# for key in checkpoint['state_dict'].keys():
+	# 	print(key, checkpoint['state_dict'][key].shape)
+	# for i,layer in enumerate(checkpoint['state_dict'].keys()):
+	# 	print(i," ",layer," ",checkpoint["state_dict"][layer].shape)
+	first_layer_weight = checkpoint['state_dict']['backbone.layer0.0.weight']
+	print(first_layer_weight.shape)
+	# weight_shape = [16,1,7,7]
+	# new_first_layer = nn.init.kaiming_normal_(torch.empty(weight_shape))
+	# new_first_layer = torch.cat((first_layer_weight,new_first_layer),dim=1)
+	# checkpoint['state_dict']['backbone.layer0.0.weight'] = new_first_layer
+	# torch.save(checkpoint,'/home/ash/Small-Obs-Project/deeplab_checkpoints/checkpoints/deeplab_4_channel_inp.pth')

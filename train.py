@@ -89,13 +89,13 @@ class Trainer(object):
 		num_img_tr = len(self.train_loader)
 
 		for i, sample in enumerate(tbar):
-			image, target = sample['image'], sample['label']
+			image,region_prop,target = sample['image'],sample['rp'],sample['label']
 			if self.args.cuda:
-				image, target = image.cuda(), target.cuda()
+				image,region_prop,target = image.cuda(),region_prop.cuda(),target.cuda()
 
 			self.scheduler(self.optimizer, i, epoch, self.best_pred)
 			self.optimizer.zero_grad()
-			output = self.model(image)
+			output = self.model(image,region_prop)
 			loss = self.criterion.CrossEntropyLoss(output,target,weight=torch.from_numpy(calculate_weights_batch(sample,self.nclass).astype(np.float32)))
 			loss.backward()
 			self.optimizer.step()
@@ -110,8 +110,8 @@ class Trainer(object):
 			# Plot prediction every 20th iter
 			if i % (num_img_tr // 20) == 0:
 				global_step = i + num_img_tr * epoch
-				self.summary.vis_grid(self.writer, self.args.dataset, image.clone().data.cpu().numpy()[0],
-									target.clone().data.cpu().numpy()[0],pred[0],
+				self.summary.vis_grid(self.writer, self.args.dataset, image.data.cpu().numpy()[0],
+									target.data.cpu().numpy()[0],pred[0],region_prop.data.cpu().numpy()[0],
 									pred_softmax[0], global_step, split="Train")
 
 		self.writer.add_scalar('train/total_loss_epoch', train_loss/num_img_tr, epoch)
@@ -145,11 +145,11 @@ class Trainer(object):
 		num_itr=len(loader)
 
 		for i, sample in enumerate(tbar):
-			image, target = sample['image'], sample['label']
+			image, region_prop, target = sample['image'], sample['rp'], sample['label']
 			if self.args.cuda:
-				image, target = image.cuda(), target.cuda()
+				image, region_prop, target = image.cuda(), region_prop.cuda(), target.cuda()
 			with torch.no_grad():
-				output = self.model(image)
+				output = self.model(image,region_prop)
 			# loss = self.criterion.CrossEntropyLoss(output,target,weight=torch.from_numpy(calculate_weights_batch(sample,self.nclass).astype(np.float32)))
 			# test_loss += loss.item()
 			tbar.set_description('Test loss: %.3f' % (test_loss / (i + 1)))
@@ -158,13 +158,15 @@ class Trainer(object):
 			pred = output.clone().data.cpu()
 			pred_softmax = F.softmax(pred, dim=1).numpy()
 			pred = np.argmax(pred.numpy(), axis=1)
-			target = target.clone().data.cpu().numpy()
-			image = image.clone().data.cpu().numpy()
+			target = target.data.cpu().numpy()
+			image = image.data.cpu().numpy()
+			region_prop = region_prop.data.cpu().numpy()
 
 			# Add batch sample into evaluator
 			self.evaluator.add_batch(target, pred)
 			global_step = i + num_itr * epoch
-			self.summary.vis_grid(self.writer, self.args.dataset, image[0], target[0], pred[0],pred_softmax[0], global_step, split="Validation")
+			self.summary.vis_grid(self.writer, self.args.dataset, image[0], target[0], pred[0],region_prop[0],
+								  pred_softmax[0], global_step, split="Validation")
 
 		# Fast test during the training
 		Acc = self.evaluator.Pixel_Accuracy()
