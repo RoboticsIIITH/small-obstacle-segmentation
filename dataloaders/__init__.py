@@ -47,8 +47,8 @@ def make_data_loader(args, **kwargs):
 		val_set = small_obstacle.SmallObs(args,file_paths = dataset_path['val'],split='val')
 		test_set = small_obstacle.SmallObs(args,file_paths = dataset_path['test'],split='test')
 		num_class = train_set.NUM_CLASSES
-		train_loader = DataLoader(train_set, batch_size=args.batch_size, shuffle=True, drop_last=True, **kwargs)
-		val_loader = DataLoader(val_set, batch_size=64, shuffle=True, **kwargs)
+		train_loader = DataLoader(train_set, batch_size=args.batch_size, shuffle=True, drop_last=True,**kwargs)
+		val_loader = DataLoader(val_set, batch_size=32, shuffle=False, **kwargs)
 		test_loader = DataLoader(test_set, batch_size=args.batch_size, shuffle=False, **kwargs)
 		return train_loader, val_loader, test_loader, num_class
 

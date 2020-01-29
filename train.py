@@ -12,6 +12,7 @@ from utils.lr_scheduler import LR_Scheduler
 from utils.saver import Saver
 from utils.summaries import TensorboardSummary
 from utils.metrics import Evaluator
+# torch.set_num_threads(1)
 
 class Trainer(object):
 	def __init__(self, args):
@@ -154,10 +155,9 @@ class Trainer(object):
 			# test_loss += loss.item()
 			tbar.set_description('Test loss: %.3f' % (test_loss / (i + 1)))
 
-
-			pred = output.clone().data.cpu()
-			pred_softmax = F.softmax(pred, dim=1).numpy()
-			pred = np.argmax(pred.numpy(), axis=1)
+			output = output.clone().data.cpu()
+			pred_softmax = F.softmax(output, dim=1).numpy()
+			pred = np.argmax(pred_softmax, axis=1)
 			target = target.data.cpu().numpy()
 			image = image.data.cpu().numpy()
 			region_prop = region_prop.data.cpu().numpy()
@@ -224,7 +224,7 @@ def main():
 						help='dataset name (default: pascal)')
 	parser.add_argument('--use-sbd', action='store_true', default=False,
 						help='whether to use SBD dataset (default: True)')
-	parser.add_argument('--workers', type=int, default=4,
+	parser.add_argument('--workers', type=int, default=0,
 						metavar='N', help='dataloader threads')
 	parser.add_argument('--base-size', type=int, default=512,
 						help='base image size')
@@ -265,7 +265,7 @@ def main():
 	# cuda, seed and logging
 	parser.add_argument('--no-cuda', action='store_true', default=
 						False, help='disables CUDA training')
-	parser.add_argument('--gpu-ids', type=str, default='0,1',
+	parser.add_argument('--gpu-ids', type=str, default='0',
 						help='use which gpu to train, must be a \
 						comma-separated list of integers only (default=0,1)')
 	parser.add_argument('--seed', type=int, default=1, metavar='S',
@@ -279,7 +279,7 @@ def main():
 	parser.add_argument('--ft', type=bool, default=True,
 						help='finetuning on a different dataset')
 	# evaluation option
-	parser.add_argument('--eval-interval', type=int, default=2,
+	parser.add_argument('--eval-interval', type=int, default=1,
 						help='evaluuation interval (default: 1)')
 	parser.add_argument('--no-val', type=bool, default=False,
 						help='skip validation during training')
@@ -307,7 +307,7 @@ def main():
 			'coco': 30,
 			'cityscapes': 200,
 			'pascal': 50,
-			'small_obstacle': 16
+			'small_obstacle': 15
 		}
 		args.epochs = epoches[args.dataset.lower()]
 
@@ -324,8 +324,8 @@ def main():
 			'pascal': 0.007,
 			'small_obstacle': 0.01
 		}
-		# args.lr = lrs[args.dataset.lower()] / (4 * len(args.gpu_ids)) * args.batch_size
-		args.lr = 0.01
+		args.lr = lrs[args.dataset.lower()] / (4 * len(args.gpu_ids)) * args.batch_size
+		# args.lr = 0.01
 
 	if args.checkname is None:
 		args.checkname = 'deeplab-'+str(args.backbone)

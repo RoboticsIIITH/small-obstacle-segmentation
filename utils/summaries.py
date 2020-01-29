@@ -5,6 +5,8 @@ from tensorboardX import SummaryWriter
 from dataloaders.utils import decode_seg_map_sequence,decode_segmap
 import numpy as np
 from tensorboardX.utils import figure_to_image
+import matplotlib
+matplotlib.use('Agg')
 from matplotlib import pyplot as plt
 
 class TensorboardSummary(object):

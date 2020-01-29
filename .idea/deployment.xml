@@ -6,6 +6,7 @@
         <serverdata>
           <mappings>
             <mapping deploy="/Small-Obs-Project/Small_Obstacle_Segmentation" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="Small-Obs-Project/Image_lidar_fusion" local="$PROJECT_DIR$/../Image_lidar_fusion" web="/" />
           </mappings>
         </serverdata>
       </paths>
