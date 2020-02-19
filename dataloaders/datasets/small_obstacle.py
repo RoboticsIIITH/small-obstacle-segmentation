@@ -7,6 +7,7 @@ from torchvision import transforms
 from mypath import Path
 from dataloaders import custom_transforms as tr
 
+
 class SmallObs(data.Dataset):
 
 	NUM_CLASSES = 3
@@ -26,17 +27,12 @@ class SmallObs(data.Dataset):
 		input_path = self.file_paths[index]
 		temp=input_path.split('labels')
 		img_path = temp[0] + 'image' + temp[1]
-		rp_path = temp[0] + 'context_geometric' + temp[1].split('.')[0] + '.npy'
+		rp_path = temp[0] + 'context_full' + temp[1].split('.')[0] + '.npy'
 		# depth_path = temp[0] + 'depth' + temp[1]
 
 		_img = np.array(Image.open(img_path))
-		# _depth = np.array(Image.open(depth_path),dtype=np.float)
-		# assert np.max(_depth) > 255. , "Found 8 bit depth, 16 bit depth is required"
-		# _depth = _depth/256.																# Converts 16 bit uint depth to 0-255 float
 		_target = np.asarray(Image.open(input_path))
 		_region_prop = np.load(rp_path)
-		# _region_prop = np.clip(_region_prop,0,1)
-		# print(np.max(_region_prop),np.min(_region_prop),input_path)
 		assert np.max(_region_prop) <= 1.0, "Incorrect region proposal input"
 
 		"""Combine all small obstacle classes from 2 to 9"""

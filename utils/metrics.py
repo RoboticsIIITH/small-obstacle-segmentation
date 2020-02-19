@@ -102,6 +102,33 @@ class Evaluator(object):
         idr = np.sum(idr) / idr_count
         return idr
 
+    def get_false_idr(self,class_value):
+        pred = self.pred_labels
+        target = self.gt_labels
+        false_idr = []
+        false_idr_count = 0
+        for num in range(target.shape[0]):
+            pred_mask = pred[num] == class_value
+            obstacle_mask = (target[num] == class_value).astype(int)
+            road_mask = target[num] >= 1
+            pred_mask = (pred_mask & road_mask).astype(int)         # Filter predictions lying on road
+            instance_id, instance_num = ndi.label(pred_mask)        # Return predicted instances on road
+            count = 0
+            if instance_num == 0:
+                false_idr.append(0.0)
+            else:
+                for id in range(1, instance_num + 1):   # Background is given instance id zero
+                    x, y = np.where(instance_id == id)
+                    is_false_detection = np.count_nonzero(pred_mask[x, y] & obstacle_mask[x,y])
+                    if is_false_detection == 0:         # No overlap between prediction and label: Is a False detection
+                        count += 1
+
+                false_idr.append(float(count / instance_num))
+                false_idr_count += 1
+
+        false_idr_batch = np.sum(false_idr) / false_idr_count
+        return false_idr_batch
+
     def add_batch(self, gt_image, pre_image, *args):
         assert gt_image.shape == pre_image.shape
         if len(self.gt_labels) == 0 and len(self.pred_labels) == 0:

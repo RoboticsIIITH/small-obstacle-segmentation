@@ -5,7 +5,7 @@
     <orderEntry type="jdk" jdkName="Python 3.6" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Image_lidar_fusion" />
-    <orderEntry type="module" module-name="LSTM" />
+    <orderEntry type="module" module-name="nconv" />
   </component>
   <component name="TestRunnerService">
     <option name="projectConfiguration" value="Nosetests" />

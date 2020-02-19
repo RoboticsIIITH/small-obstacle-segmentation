@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../Image_lidar_fusion" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../nconv" vcs="Git" />
   </component>
 </project>

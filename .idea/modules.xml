@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../Image_lidar_fusion/.idea/Image_lidar_fusion.iml" filepath="$PROJECT_DIR$/../Image_lidar_fusion/.idea/Image_lidar_fusion.iml" />
-      <module fileurl="file://$USER_HOME$/LSTM/.idea/LSTM.iml" filepath="$USER_HOME$/LSTM/.idea/LSTM.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Small_Obstacle_Segmentation.iml" filepath="$PROJECT_DIR$/.idea/Small_Obstacle_Segmentation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../nconv/.idea/nconv.iml" filepath="$PROJECT_DIR$/../nconv/.idea/nconv.iml" />
     </modules>
   </component>
 </project>

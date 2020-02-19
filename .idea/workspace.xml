@@ -5,29 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc97785b-ca48-49fb-90a2-25c97318838f" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/prepare_labels.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/temporal_complete.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/temporal_img.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/temporal_prop.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/temporal_prop.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Image_lidar_fusion/focal_loss.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Image_lidar_fusion/focal_loss.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/gt_from_loam.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/gt_from_loam.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/vis_accumulated_cloud.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/vis_accumulated_cloud.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Image_lidar_fusion/lstm_dataloader.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Image_lidar_fusion/lstm_dataloader.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Image_lidar_fusion/lstm_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Image_lidar_fusion/lstm_main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Image_lidar_fusion/lstm_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Image_lidar_fusion/lstm_model.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Image_lidar_fusion/lstm_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Image_lidar_fusion/lstm_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Image_lidar_fusion/read_bagfile.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Image_lidar_fusion/read_bagfile.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Image_lidar_fusion/read_bagfile.py.save" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Image_lidar_fusion/temporal_prop.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Image_lidar_fusion/temporal_prop.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Image_lidar_fusion/visualise_calibration.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Image_lidar_fusion/visualise_calibration.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/Small_Obstacle_Segmentation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Small_Obstacle_Segmentation.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dataloaders/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataloaders/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataloaders/datasets/cityscapes.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataloaders/datasets/coco.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataloaders/datasets/combine_dbs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataloaders/datasets/pascal.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataloaders/datasets/sbd.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/dataloaders/datasets/small_obstacle.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataloaders/datasets/small_obstacle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_script.sh" beforeDir="false" afterPath="$PROJECT_DIR$/train_script.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/metrics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/saver.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/saver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/summaries.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/summaries.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/val_script.sh" beforeDir="false" afterPath="$PROJECT_DIR$/val_script.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nconv/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../nconv/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nconv/.idea/nconv.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../nconv/.idea/nconv.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nconv/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../nconv/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nconv/workspace/exp_guided_enc_dec/network_exp_guided_enc_dec.py" beforeDir="false" afterPath="$PROJECT_DIR$/../nconv/workspace/exp_guided_enc_dec/network_exp_guided_enc_dec.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../nconv/workspace/exp_unguided_depth/network_exp_unguided_depth.py" beforeDir="false" afterPath="$PROJECT_DIR$/../nconv/workspace/exp_unguided_depth/network_exp_unguided_depth.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +48,44 @@
     <favorites_list name="Small_Obstacle_Segmentation" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/lstm_dataloader.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2166">
+              <caret line="174" lean-forward="true" selection-start-line="174" selection-end-line="174" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/lstm_main.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="453">
+              <caret line="184" column="3" selection-start-line="184" selection-start-column="3" selection-end-line="184" selection-end-column="3" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/temporal_complete.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="66" column="13" lean-forward="true" selection-start-line="62" selection-end-line="100" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -50,7 +96,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>args.lr</find>
       <find>epoch</find>
       <find>gpu</find>
       <find>index</find>
@@ -80,6 +125,7 @@
       <find>self.nclass</find>
       <find>matpl</find>
       <find>u_net</find>
+      <find>new_region_list</find>
     </findStrings>
     <replaceStrings>
       <replace>range_img</replace>
@@ -100,8 +146,6 @@
         <option value="$PROJECT_DIR$/utils/loss.py" />
         <option value="$PROJECT_DIR$/utils/calculate_weights.py" />
         <option value="$PROJECT_DIR$/dataloaders/utils.py" />
-        <option value="$PROJECT_DIR$/utils/metrics.py" />
-        <option value="$PROJECT_DIR$/../Image_lidar_fusion/visualise_calibration.py" />
         <option value="$PROJECT_DIR$/../Image_lidar_fusion/test_something_2.py" />
         <option value="$PROJECT_DIR$/modeling/backbone/drn.py" />
         <option value="$PROJECT_DIR$/dataloaders/custom_transforms.py" />
@@ -116,23 +160,34 @@
         <option value="$PROJECT_DIR$/../Image_lidar_fusion/focal_loss.py" />
         <option value="$PROJECT_DIR$/../Image_lidar_fusion/lstm_model.py" />
         <option value="$PROJECT_DIR$/../Image_lidar_fusion/read_bagfile.py" />
-        <option value="$PROJECT_DIR$/dataloaders/datasets/small_obstacle.py" />
-        <option value="$PROJECT_DIR$/dataloaders/__init__.py" />
-        <option value="$PROJECT_DIR$/val_script.sh" />
-        <option value="$PROJECT_DIR$/train.py" />
         <option value="$PROJECT_DIR$/mypath.py" />
-        <option value="$PROJECT_DIR$/utils/saver.py" />
         <option value="$PROJECT_DIR$/utils/summaries.py" />
         <option value="$PROJECT_DIR$/train_script.sh" />
         <option value="$PROJECT_DIR$/../Image_lidar_fusion/lstm_utils.py" />
-        <option value="$PROJECT_DIR$/../Image_lidar_fusion/lstm_dataloader.py" />
         <option value="$PROJECT_DIR$/../Image_lidar_fusion/u_net.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/train.py" />
+        <option value="$PROJECT_DIR$/dataloaders/datasets/small_obstacle.py" />
+        <option value="$PROJECT_DIR$/utils/saver.py" />
+        <option value="$PROJECT_DIR$/val_script.sh" />
+        <option value="$PROJECT_DIR$/dataloaders/__init__.py" />
+        <option value="$PROJECT_DIR$/utils/temporal_prop.py" />
+        <option value="$PROJECT_DIR$/../nconv/workspace/exp_unguided_depth/network_exp_unguided_depth.py" />
+        <option value="$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/read_odometry.py" />
+        <option value="$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/gt_from_loam.py" />
+        <option value="$PROJECT_DIR$/../Image_lidar_fusion/visualise_calibration.py" />
+        <option value="$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/copy_ssh.py" />
+        <option value="$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/temporal_prop.py" />
+        <option value="$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/temporal_img.py" />
+        <option value="$PROJECT_DIR$/utils/metrics.py" />
+        <option value="$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/temporal_complete.py" />
         <option value="$PROJECT_DIR$/../Image_lidar_fusion/lstm_main.py" />
+        <option value="$PROJECT_DIR$/../Image_lidar_fusion/lstm_dataloader.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="x" value="1920" />
+    <option name="x" value="-1920" />
     <option name="y" value="-28" />
     <option name="width" value="1920" />
     <option name="height" value="1108" />
@@ -149,6 +204,15 @@
             <path>
               <item name="Small_Obstacle_Segmentation" type="b2602c69:ProjectViewProjectNode" />
               <item name="Small_Obstacle_Segmentation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Small_Obstacle_Segmentation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Image_lidar_fusion" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Small_Obstacle_Segmentation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Image_lidar_fusion" type="462c0819:PsiDirectoryNode" />
+              <item name="lidar_odometry" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -188,7 +252,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/LSTM" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Image_lidar_fusion/optimizer.py" />
     <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
@@ -210,6 +274,24 @@
         </RuleState>
       </list>
     </option>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="tests" factoryName="py.test">
+      <module name="LSTM" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -278,22 +360,30 @@
       <workItem from="1580213581791" duration="12116000" />
       <workItem from="1580226850022" duration="690000" />
       <workItem from="1580264029926" duration="2154000" />
+      <workItem from="1581755508023" duration="22525000" />
+      <workItem from="1581927678031" duration="7024000" />
+      <workItem from="1581943219751" duration="21880000" />
+      <workItem from="1581970030917" duration="2271000" />
+      <workItem from="1582004472151" duration="21773000" />
+      <workItem from="1582041950158" duration="7282000" />
+      <workItem from="1582113050514" duration="1243000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="566445000" />
+    <option name="totallyTimeSpent" value="650443000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-28" width="1920" height="1108" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.5025381" side_tool="true" weight="0.56556505" />
-      <window_info content_ui="combo" id="Project" order="1" weight="0.23827292" />
+      <window_info content_ui="combo" id="Project" order="1" weight="0.23212379" />
       <window_info id="Structure" order="2" weight="0.25" />
-      <window_info active="true" id="Terminal" order="3" sideWeight="0.49746192" visible="true" weight="0.98400855" />
+      <window_info id="Terminal" order="3" sideWeight="0.49746192" weight="0.5357524" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
-      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50053304" side_tool="true" weight="0.32791877" />
+      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50053304" side_tool="true" weight="0.327551" />
       <window_info anchor="bottom" id="Version Control" order="3" />
       <window_info anchor="bottom" id="Python Console" order="4" weight="0.32902583" />
       <window_info anchor="bottom" id="Message" order="5" />
@@ -357,174 +447,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/encode_segmap.py" />
-    <entry file="file://$PROJECT_DIR$/run/small_obstacle/deeplab-drn/experiment_0/parameters.txt" />
-    <entry file="file://$USER_HOME$/LSTM/obstacle_lstm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-522">
-          <caret line="69" column="76" selection-start-line="69" selection-start-column="76" selection-end-line="69" selection-end-column="76" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modeling/decoder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="46" column="36" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modeling/aspp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1512">
-          <caret line="88" column="47" selection-start-line="88" selection-start-column="47" selection-end-line="88" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/moloy_trans_mat.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/test_something_2.py" />
-    <entry file="file://$PROJECT_DIR$/modeling/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modeling/backbone/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="54" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modeling/backbone/drn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="155" selection-start-line="155" selection-end-line="155" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/temporal_prop.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="912">
-          <caret line="48" column="56" lean-forward="true" selection-start-line="48" selection-start-column="56" selection-end-line="48" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/delete.py" />
-    <entry file="file://$USER_HOME$/LSTM/seq2seq.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="71" column="45" lean-forward="true" selection-start-line="71" selection-start-column="45" selection-end-line="71" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/loss.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/LSTM/lstm.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
-          <caret line="146" column="8" selection-start-line="146" selection-start-column="8" selection-end-line="146" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/calculate_weights.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="45" column="14" lean-forward="true" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/visualise_calibration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1511">
-          <caret line="131" column="13" lean-forward="true" selection-start-line="129" selection-start-column="4" selection-end-line="131" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/lr_scheduler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="709">
-          <caret line="64" column="30" lean-forward="true" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataloaders/custom_transforms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="50" lean-forward="true" selection-start-line="47" selection-start-column="8" selection-end-line="50" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/test_bed.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/LSTM/data_loader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modeling/deeplab.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1292">
-          <caret line="74" column="114" selection-start-line="74" selection-start-column="114" selection-end-line="74" selection-end-column="114" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="6" lean-forward="true" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/test_something.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="15" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/anaconda3/envs/fastaienv/lib/python3.6/site-packages/torch/nn/modules/module.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -614,117 +536,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/dataloader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2679">
-          <caret line="141" column="47" lean-forward="true" selection-start-line="141" selection-start-column="47" selection-end-line="141" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/optimizer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="138" column="33" selection-start-line="138" selection-start-column="33" selection-end-line="138" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataloaders/utils.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2033">
-          <caret line="107" column="56" selection-start-line="107" selection-start-column="56" selection-end-line="107" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/metrics.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="85" column="52" lean-forward="true" selection-start-line="85" selection-start-column="52" selection-end-line="85" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dataloaders/datasets/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataloaders/datasets/small_obstacle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="899">
-          <caret line="108" column="50" selection-start-line="108" selection-start-column="50" selection-end-line="108" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/summaries.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="23" column="77" selection-start-line="23" selection-start-column="77" selection-end-line="23" selection-end-column="77" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataloaders/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="899">
-          <caret line="52" column="63" selection-start-line="52" selection-start-column="54" selection-end-line="52" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/train_script.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="154" selection-start-column="154" selection-end-column="154" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mypath.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="12" column="46" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/saver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="11" column="51" selection-start-line="11" selection-start-column="51" selection-end-line="11" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/val_script.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="52" selection-start-column="48" selection-end-column="113" />
         </state>
       </provider>
     </entry>
@@ -734,16 +552,6 @@
           <caret line="47" column="81" selection-start-line="47" selection-start-column="81" selection-end-line="47" selection-end-column="81" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/lstm_dataloader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1748">
-          <caret line="46" column="31" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -758,10 +566,296 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="3" selection-end-line="5" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="6" lean-forward="true" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataloaders/custom_transforms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataloaders/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="915">
+          <caret line="107" column="56" selection-start-line="107" selection-start-column="56" selection-end-line="107" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataloaders/datasets/small_obstacle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="29" column="41" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/saver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="16" column="80" selection-start-line="16" selection-start-column="80" selection-end-line="16" selection-end-column="80" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train_script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="230" lean-forward="true" selection-start-column="151" selection-end-column="230" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/summaries.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="23" column="77" selection-start-line="23" selection-start-column="77" selection-end-line="23" selection-end-column="77" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/val_script.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="104" selection-start-column="104" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dataloaders/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="44" column="34" selection-start-line="44" selection-start-column="34" selection-end-line="44" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/temporal_prop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="37" column="22" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3914">
+          <caret line="206" column="48" lean-forward="true" selection-start-line="206" selection-start-column="48" selection-end-line="206" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../nconv/workspace/exp_unguided_depth/network_exp_unguided_depth.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="24" column="53" selection-start-line="24" selection-start-column="53" selection-end-line="24" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../nconv/dataloader/KittiDepthDataset.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1311">
+          <caret line="73" column="26" selection-start-line="73" selection-start-column="26" selection-end-line="73" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../nconv/modules/nconv.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../nconv/workspace/exp_unguided_disparity/network_exp_unguided_disparity.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/copy_ssh.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/read_odometry.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="14" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/visualise_calibration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="37" lean-forward="true" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../nconv/trainers/trainer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../nconv/trainers/KittiDepthTrainer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="41" column="11" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../nconv/dataloader/KittiDepthDataloader.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/optimizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="26" column="31" lean-forward="true" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modeling/sync_batchnorm/unittest.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modeling/sync_batchnorm/replicate.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modeling/sync_batchnorm/comm.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modeling/sync_batchnorm/batchnorm.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/temporal_prop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="47" selection-start-line="47" selection-end-line="85" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/fastaienv/lib/python3.6/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="1064" column="47" selection-start-line="1064" selection-start-column="47" selection-end-line="1064" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/metrics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="104" column="22" selection-start-line="104" selection-start-column="22" selection-end-line="104" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/temporal_img.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="144" column="25" selection-start-line="144" selection-start-column="25" selection-end-line="144" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/gt_from_loam.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="866">
+          <caret line="104" column="47" selection-start-line="104" selection-start-column="47" selection-end-line="104" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/dataloader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2166">
+          <caret line="141" column="47" selection-start-line="141" selection-start-column="47" selection-end-line="141" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/temporal_prop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="16" selection-start-line="16" selection-end-line="17" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/lidar_odometry/temporal_complete.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="66" column="13" lean-forward="true" selection-start-line="62" selection-end-line="100" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/lstm_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4509">
-          <caret line="350" column="47" selection-start-line="350" selection-start-column="47" selection-end-line="350" selection-end-column="47" />
+        <state relative-caret-position="453">
+          <caret line="184" column="3" selection-start-line="184" selection-start-column="3" selection-end-line="184" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../Image_lidar_fusion/lstm_dataloader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2166">
+          <caret line="174" lean-forward="true" selection-start-line="174" selection-end-line="174" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>

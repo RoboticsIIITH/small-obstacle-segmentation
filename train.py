@@ -12,6 +12,7 @@ from utils.lr_scheduler import LR_Scheduler
 from utils.saver import Saver
 from utils.summaries import TensorboardSummary
 from utils.metrics import Evaluator
+from utils.temporal_prop import TemporalContexts
 # torch.set_num_threads(1)
 
 class Trainer(object):
@@ -47,6 +48,7 @@ class Trainer(object):
 
 		self.criterion = SegmentationLosses(cuda=args.cuda)
 		self.model, self.optimizer = model, optimizer
+		self.contexts = TemporalContexts(history_len=5)
 
 		# Define Evaluator
 		self.evaluator = Evaluator(self.nclass)
@@ -147,23 +149,32 @@ class Trainer(object):
 
 		for i, sample in enumerate(tbar):
 			image, region_prop, target = sample['image'], sample['rp'], sample['label']
+			orig_region_prop = region_prop.clone()
+			region_prop = self.contexts.temporal_prop(image.numpy(),region_prop.numpy())
+
 			if self.args.cuda:
 				image, region_prop, target = image.cuda(), region_prop.cuda(), target.cuda()
 			with torch.no_grad():
 				output = self.model(image,region_prop)
+
 			# loss = self.criterion.CrossEntropyLoss(output,target,weight=torch.from_numpy(calculate_weights_batch(sample,self.nclass).astype(np.float32)))
 			# test_loss += loss.item()
-			tbar.set_description('Test loss: %.3f' % (test_loss / (i + 1)))
+			# tbar.set_description('Test loss: %.3f' % (test_loss / (i + 1)))
 
-			output = output.clone().data.cpu()
+			output = output.detach().data.cpu()
 			pred_softmax = F.softmax(output, dim=1).numpy()
 			pred = np.argmax(pred_softmax, axis=1)
-			target = target.data.cpu().numpy()
-			image = image.data.cpu().numpy()
-			region_prop = region_prop.data.cpu().numpy()
+			target = target.cpu().numpy()
+			image = image.cpu().numpy()
+			region_prop = region_prop.cpu().numpy()
+			orig_region_prop = orig_region_prop.numpy()
 
 			# Add batch sample into evaluator
 			self.evaluator.add_batch(target, pred)
+
+			# Append buffer with original context(before temporal propagation)
+			self.contexts.append_buffer(image[0],orig_region_prop[0],pred[0])
+
 			global_step = i + num_itr * epoch
 			self.summary.vis_grid(self.writer, self.args.dataset, image[0], target[0], pred[0],region_prop[0],
 								  pred_softmax[0], global_step, split="Validation")
@@ -343,8 +354,15 @@ def main():
 	elif args.mode=="val" or args.mode=="test":
 
 		for epoch in range(trainer.args.start_epoch, trainer.args.epochs):
-
+			# checkpoint_dir = "/scratch/ash/small_obs/image_cnn_context/exp_0/"
+			# checkpoint_file = checkpoint_dir + 'checkpoint_{}_.pth.tar'.format(epoch)
+			# print(checkpoint_file)
+			# if os.path.exists(checkpoint_file):
+			#       checkpoint = torch.load(checkpoint_file)
+			#       trainer.model.module.load_state_dict(checkpoint['state_dict'])
 			trainer.validation(epoch)
+		# else:
+		#       continue
 
 	trainer.writer.close()
 

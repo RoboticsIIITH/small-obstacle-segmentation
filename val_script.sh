@@ -1,1 +1,1 @@
-CUDA_VISIBLE_DEVICES=0 python train.py --resume '/scratch/ash/iiit_logs/image_region_prop/exp_0/best_idr.pth.tar' --mode val --epochs 1
+CUDA_VISIBLE_DEVICES=0 python train.py --resume '/scratch/ash/small_obs/image_context_full/exp_0/checkpoint_5_.pth.tar' --mode val --batch-size 1 --workers 1 --epochs 1 --gpu_ids 0
