@@ -9,12 +9,12 @@ class Saver(object):
 
     def __init__(self, args):
         self.args = args
-        self.directory = os.path.join('/scratch/ash/small_obs/image_context_full')
+        self.directory = os.path.join('/scratch/ash/small_obs/temporal_vis')
         self.runs = sorted(glob.glob(os.path.join(self.directory, 'exp_*')))
         run_id = int(self.runs[-1].split('_')[-1]) + 1 if self.runs else 0
 
         # self.experiment_dir = os.path.join(self.directory, 'exp_{}'.format(str(run_id)))
-        self.experiment_dir = os.path.join(self.directory,'val_temporal_template')
+        self.experiment_dir = os.path.join(self.directory,'test_vis')
         if not os.path.exists(self.experiment_dir):
             os.makedirs(self.experiment_dir)
 

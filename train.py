@@ -149,8 +149,8 @@ class Trainer(object):
 
 		for i, sample in enumerate(tbar):
 			image, region_prop, target = sample['image'], sample['rp'], sample['label']
-			orig_region_prop = region_prop.clone()
-			region_prop = self.contexts.temporal_prop(image.numpy(),region_prop.numpy())
+			# orig_region_prop = region_prop.clone()
+			# region_prop = self.contexts.temporal_prop(image.numpy(),region_prop.numpy())
 
 			if self.args.cuda:
 				image, region_prop, target = image.cuda(), region_prop.cuda(), target.cuda()
@@ -167,44 +167,39 @@ class Trainer(object):
 			target = target.cpu().numpy()
 			image = image.cpu().numpy()
 			region_prop = region_prop.cpu().numpy()
-			orig_region_prop = orig_region_prop.numpy()
+			# orig_region_prop = orig_region_prop.numpy()
 
 			# Add batch sample into evaluator
 			self.evaluator.add_batch(target, pred)
 
 			# Append buffer with original context(before temporal propagation)
-			self.contexts.append_buffer(image[0],orig_region_prop[0],pred[0])
+			# self.contexts.append_buffer(image[0],orig_region_prop[0],pred[0])
 
 			global_step = i + num_itr * epoch
-			self.summary.vis_grid(self.writer, self.args.dataset, image[0], target[0], pred[0],region_prop[0],
-								  pred_softmax[0], global_step, split="Validation")
+			self.summary.vis_grid(self.writer, self.args.dataset, image[0], target[0], pred[0],region_prop[0],pred_softmax[0], global_step, split="Validation")
 
 		# Fast test during the training
-		Acc = self.evaluator.Pixel_Accuracy()
-		Acc_class = self.evaluator.Pixel_Accuracy_Class()
 		mIoU = self.evaluator.Mean_Intersection_over_Union()
-		FWIoU = self.evaluator.Frequency_Weighted_Intersection_over_Union()
 		recall,precision=self.evaluator.pdr_metric(class_id=2)
 		idr_avg = np.array([self.evaluator.get_idr(class_value=2, threshold=value) for value in idr_thresholds])
+		false_idr = self.evaluator.get_false_idr(class_value=2)
+		instance_iou = self.evaluator.get_instance_iou(threshold=0.20,class_value=2)
 
-		self.writer.add_scalar('val/total_loss_epoch', test_loss, epoch)
+		# self.writer.add_scalar('val/total_loss_epoch', test_loss, epoch)
 		self.writer.add_scalar('val/mIoU', mIoU, epoch)
-		self.writer.add_scalar('val/Acc', Acc, epoch)
-		self.writer.add_scalar('val/Acc_class', Acc_class, epoch)
-		self.writer.add_scalar('val/fwIoU', FWIoU, epoch)
 		self.writer.add_scalar('val/Recall/per_epoch',recall,epoch)
-		self.writer.add_scalar('val/Precision/per_epoch',precision,epoch)
 		self.writer.add_scalar('IDR/per_epoch(0.20)', idr_avg[0], epoch)
 		self.writer.add_scalar('IDR/avg_epoch', np.mean(idr_avg), epoch)
+		self.writer.add_scalar('False_IDR/epoch',false_idr,epoch)
+		self.writer.add_scalar('Instance_IOU/epoch', instance_iou, epoch)
 		self.writer.add_histogram('Prediction_hist', self.evaluator.pred_labels[self.evaluator.gt_labels == 2], epoch)
 
-
 		print('Validation:')
-		print("Acc:{}, Acc_class:{}, mIoU:{}, fwIoU: {}".format(Acc, Acc_class, mIoU, FWIoU))
-		print('Loss: %.3f' % test_loss)
-		print('Recall/PDR:{}'.format(recall))
-		print('Precision:{}'.format(precision))
-		print('IDR:{}'.format(np.mean(idr_avg)))
+		# print('Loss: %.3f' % test_loss)
+		# print('Recall/PDR:{}'.format(recall))
+		print('IDR:{}'.format(idr_avg[0]))
+		print('False Positive Rate: {}'.format(false_idr))
+		print('Instance_IOU: {}'.format(instance_iou))
 
 		if self.args.mode == "train":
 			new_pred = mIoU

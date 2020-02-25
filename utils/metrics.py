@@ -129,6 +129,53 @@ class Evaluator(object):
         false_idr_batch = np.sum(false_idr) / false_idr_count
         return false_idr_batch
 
+    def get_instance_iou(self,threshold,class_value=2):
+        pred = self.pred_labels
+        target = self.gt_labels
+        instance_iou=[]
+        valid_frame_count = 0
+        for num in range(target.shape[0]):
+            true_positive = 0
+            false_negative = 0
+            false_positive = 0
+
+            pred_mask = pred[num] == class_value
+            target_mask = target[num] == class_value
+            instance_id, instance_num = ndi.label(target_mask)      # Return number of instances of given class in target
+
+            if instance_num == 0:
+                instance_iou.append(0.0)
+                continue
+            else:
+                for id in range(1, instance_num + 1):               # Background is given instance id zero
+                    x, y = np.where(instance_id == id)
+                    detection_ratio = np.count_nonzero(pred_mask[x, y]) / np.count_nonzero(target_mask[x, y])
+                    if detection_ratio >= threshold:
+                        true_positive += 1
+                    else:
+                        false_negative += 1
+
+            road_mask = target[num] >= 1
+            pred_on_road = (pred_mask & road_mask)
+            instance_id, instance_num = ndi.label(pred_on_road)
+
+            if instance_num == 0:
+                false_positive = 0
+            else:
+                for id in range(1, instance_num + 1):
+                    x, y = np.where(instance_id == id)
+                    is_false_detection = np.count_nonzero(pred_on_road[x, y] & target_mask[x,y])
+                    if is_false_detection == 0:         # No overlap between prediction and label: Is a False detection
+                        false_positive += 1
+
+            iIOU = true_positive / (true_positive + false_positive + false_negative)
+            instance_iou.append(iIOU)
+            valid_frame_count += 1
+
+        iIOU_batch = float(np.sum(instance_iou)/valid_frame_count)
+        return iIOU_batch
+
+
     def add_batch(self, gt_image, pre_image, *args):
         assert gt_image.shape == pre_image.shape
         if len(self.gt_labels) == 0 and len(self.pred_labels) == 0:

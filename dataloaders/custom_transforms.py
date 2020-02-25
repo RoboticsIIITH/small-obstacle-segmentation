@@ -147,7 +147,7 @@ class FixedCrop(object):
         label = sample['label']
         label = label[self.y1:self.y2, self.x1:self.x2]
         region_prop = sample['rp']
-        region_prop = region_prop[self.y1:self.y2, self.x1:self.x2]
+        # region_prop = region_prop[self.y1:self.y2, self.x1:self.x2]
 
         return {'image': Image.fromarray(img),
                 'label': Image.fromarray(label),

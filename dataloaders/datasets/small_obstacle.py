@@ -27,7 +27,7 @@ class SmallObs(data.Dataset):
 		input_path = self.file_paths[index]
 		temp=input_path.split('labels')
 		img_path = temp[0] + 'image' + temp[1]
-		rp_path = temp[0] + 'context_full' + temp[1].split('.')[0] + '.npy'
+		rp_path = temp[0] + 'context_temporal_road_prior' + temp[1].split('.')[0] + '.npy'
 		# depth_path = temp[0] + 'depth' + temp[1]
 
 		_img = np.array(Image.open(img_path))
